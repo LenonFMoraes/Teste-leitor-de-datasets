@@ -28,7 +28,7 @@ if 'PA' in st.session_state:
 
 
     ###Scatter plot3d interativo
-    plot=st.selectbox('Outros plots', options=['Opções', 'Scatter plot', 'Histograma com filtros', 'Scatter 3d', 'Charts', 'Pizza'])
+    plot=st.selectbox('Outros plots', options=['Opções', 'Scatter plot', 'Histograma com filtros', 'Scatter 3d', 'Charts', 'Pizza', 'Boxplot'])
     if plot=="Scatter 3d":
         st.subheader('Scatter plot 3d')
         with st.container(horizontal=True):
@@ -54,6 +54,12 @@ if 'PA' in st.session_state:
         col2=st.selectbox('Coluna Filtro', options=PA.bd.columns, width=100)
 
         plots.grafico_pizza(PA.bd,col1,col2)
+
+    elif plot=='Boxplot':
+        st.subheader('Boxplot')
+        col1=st.selectbox('Coluna alvo', options=PA.bd.columns, width=100)
+        col2=st.selectbox('Coluna Filtro', options=PA.bd.columns, width=100)
+        plots.boxplot(PA.bd,col1,col2)
 else:
     st.info('Faça upload do seu dataframe na página principal para liberar as opções desta página')
 

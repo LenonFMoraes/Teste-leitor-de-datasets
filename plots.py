@@ -40,3 +40,7 @@ def histograma_filtro(self,coluna,filtro):
 def grafico_pizza(self,coluna,filtro):
     fig=pty.pie(self, values=coluna, color=filtro, title='grafico de pizza', template= 'plotly_white')
     st.plotly_chart(fig, use_container_width=True)
+
+def boxplot(self,coluna,filtro):
+    fig=pty.box(self,filtro,coluna, color=filtro, title='boxplot', template= 'plotly_white', points='all')
+    st.plotly_chart(fig, use_container_width=True)
