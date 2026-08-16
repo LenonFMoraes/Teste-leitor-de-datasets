@@ -48,14 +48,22 @@ if 'PA' in  st.session_state:
         if PA.tipo_coluna[f'{alvo}']=="Numérica":
             opcoes = st.selectbox('Opções', options=['Métricas', 'teste de distribuições', 'Remover Nulos', 'Preencher Nulos', 'Fazer o recorte da coluna', 'Deletar a coluna'])
             comandos={'Métricas':  operações.calcular, 'Remover Nulos':limpeza.Remover_Nulos, 'Preencher Nulos': limpeza.Preencher_Nulos }
+
             if opcoes=='Preencher Nulos':
                 valor=st.selectbox("Valor:", options=['Escolha um valor','0','Média','Mediana'])
                 exec=comandos[opcoes](PA,alvo,valor)
+
             else:
                 exec=comandos[opcoes](PA,alvo)
         else:
             opcoes = st.selectbox('Opções',  options=['Métricas', 'Remover Nulos', 'Preencher Nulos',  'teste de distribuições', 'Fazer o recorte da coluna', 'Deletar a coluna'])
-            comandos={'Métricas': lambda: operações.calcular(PA,alvo), 'Remover Nulos':lambda: limpeza.Remover_Nulos(PA,alvo), 'Preencher Nulos':lambda: limpeza.Preencher_Nulos(PA,alvo,0),  'teste de distribuições': 'a' , 'Fazer o recorte da coluna':'', 'Deletar a coluna':''}
-            exec=comandos[opcoes]()
+            comandos={'Métricas':  operações.calcular, 'Remover Nulos': limpeza.Remover_Nulos, 'Preencher Nulos': limpeza.Preencher_Nulos,  'teste de distribuições': 'a' , 'Fazer o recorte da coluna':'', 'Deletar a coluna':''}
+
+            if opcoes == 'Preencher Nulos':
+                valor = st.selectbox("Valor:", options=['Escolha um valor', '0', 'Média', 'Mediana'])
+                exec = comandos[opcoes](PA, alvo, valor)
+
+            else:
+                exec = comandos[opcoes](PA, alvo)
 else:
     st.info("Para manipular o dataframe é preciso fazer o upload na página inicial primeiro!")

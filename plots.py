@@ -13,6 +13,10 @@ def teste_grafico(self,coluna):
 
     st.plotly_chart(fig, use_container_width=True)
 
+def scatterplot(self,filtro):
+    fig = pty.scatter_matrix(self,color=filtro)
+    st.plotly_chart(fig, use_container_width=True )
+
 def scatter_3d(self,col1,col2,col3,alvo):
     hover_config = {col: True for col in self.bd.columns}
     fig2 = pty.scatter_3d(self.bd,x=col1,y=col2,z=col3, color=alvo,  hover_data=hover_config)

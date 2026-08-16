@@ -60,6 +60,11 @@ if 'PA' in st.session_state:
         col1=st.selectbox('Coluna alvo', options=PA.bd.columns, width=100)
         col2=st.selectbox('Coluna Filtro', options=PA.bd.columns, width=100)
         plots.boxplot(PA.bd,col1,col2)
+
+    elif plot=='Scatter plot':
+        st.subheader('Scatter plot')
+        col1=st.selectbox('Coluna filtro do scatter', options=PA.bd.columns, width=100)
+        plots.scatterplot(PA.bd,col1)
 else:
     st.info('Faça upload do seu dataframe na página principal para liberar as opções desta página')
 
