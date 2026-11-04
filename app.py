@@ -14,8 +14,4 @@ pag4=st.Page("Pag Distribuições.py", title="Teste com distribuições")
 pg=st.navigation({'Página inicial':[main_page],
 'ferramentas':[pag2,pag3,pag4]})
 pg.run()
-# 1. Título e textos (aceita Markdown!)
 
-
-
-# 2. Criar uma caixinha de seleção na barra lateral
