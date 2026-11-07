@@ -14,16 +14,17 @@ import numpy as np
 
 
 
+
 def contar_linhas(self):
-        return self.bd.count()
+        return len(self.bd)
 
 def mostrar_bd(self):####mostra o dataframe
         return self.bd
 
 
 def Mostrar_Nulos(self):###Conta quantas linhas tem valores nulos
-        f'Nulos'
-        return self.bd.isna().sum()
+
+        return self.bd.isna().sum().to_dict()
 
 def Remover_Nulos(self,col):###remove valores nulos
         self.bd=self.bd.dropna(subset=[col])
@@ -65,7 +66,9 @@ def analisar_colunas(self):###Função que pega o dataframe e analisa quais tipo
             print(lista_valores)
             contador = 0 ###contador numérico
             conta_erro = 0###contador de strings(quando o try falha de converter o dado para número)
+
             for num in range(len(lista_valores)):
+
             ##percorre a coluna contando os dados das linhas e checando os tipos
                     try:
 
@@ -86,6 +89,46 @@ def analisar_colunas(self):###Função que pega o dataframe e analisa quais tipo
 
 
         return self.tipo_coluna####retorna o dicionário criando um atributo para o mesmo na classe analisada
+
+def renomear_coluna(self,col,novo_nome):
+    tipo_de_coluna=self.tipo_coluna[col]
+    self.bd.rename(columns={col:novo_nome}, inplace=True)
+    self.tipo_coluna[novo_nome]=tipo_de_coluna
+    del(self.tipo_coluna[col])
+
+
+def deletar_coluna(self,col):
+
+    self.bd.pop(col)
+    self.tipo_coluna.pop(col)
+    self.resumo_estatistico.pop(col)
+    ajustes=[]
+    for i in self.dists:
+        chave=i.split('¨')
+
+        if col == chave[1]:
+            ajustes.append(i)
+    for n in ajustes:
+        self.dists.pop(n)
+    else:
+          self.bd.pop(col)
+
+
+
+def recorte(self,col,minimo,maximo):
+    '''A função recebe o nome da coluna e os limites escolhidos pelo usuário na interface
+    para remover possíveis outliers da análise.'''
+
+    if minimo=='minimo':
+       minimo=self.bd[col].min()
+
+    if maximo=='maximo':
+       maximo=self.bd[col].max()
+
+
+    self.bd[f'{col}_filtrada']=self.bd[col].loc[(self.bd[col]>=minimo) & (self.bd[col]<=maximo) ]
+
+
 
 
 

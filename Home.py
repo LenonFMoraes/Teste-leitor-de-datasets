@@ -8,10 +8,11 @@ import Limpeza_de_dados as limpeza
 
 
 st.title("Assistente de análise para dataframes")
-#st.markdown("Bem-vindo! Esta ferramenta foi feita para ajudar a entender datasets.")
+
 dataset=st.file_uploader('Carregue o seu dataframe', type=Projeto_analisado.arquivos_suportados)
 if dataset is not None:
     nome_arquivo=dataset.name
+    st.session_state['nome_arquivo']=nome_arquivo
     _ , ext=os.path.splitext(nome_arquivo)
     leitor_automatico={"csv": pd.read_csv,"xls":pd.read_excel,'xlsx': pd.read_excel,'feather': pd.read_feather,
      "json": pd.read_json,'parquet': pd.read_parquet}
@@ -36,7 +37,16 @@ if 'PA' in st.session_state:
 
             st.session_state['resultados']=resultados
             st.success('Dataset analisado com sucesso')
-            st.write(f"Seu Dataset foi analisado e possui os seguintes tipos de dados em cada coluna: \n\n {PA.tipo_coluna}")
+            tipo_dados=[]
+
+
+
+            st.write(f"Seu Dataset foi analisado e possui os seguintes tipos de dados em cada coluna: \n\n ")
+            st.write("Tabela usando a minha lógica de análise")
+            st.table(resultados)
+
+            st.write("Tabela usando a lógica de análise do numpy")
+            st.table(PA.bd.dtypes)
 
             st.write(f'Colunas numéricas são compostas por valores inteiros e floats, enquanto categóricas por strings')
 else:

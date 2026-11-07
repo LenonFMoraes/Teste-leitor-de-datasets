@@ -27,11 +27,13 @@ def PDF(self,distribuicao,parametros,coluna):
     distribuicoes = {"gamma": sp.gamma.pdf, "exponencial": sp.expon.pdf, "lognormal": sp.lognorm.pdf, "chi²": sp.chi2.pdf, }
     if distribuicao in distribuicoes:
         x=np.linspace(self.bd[coluna].min(),self.bd[coluna].max(),5000)
+
         d=print(distribuicao)
         s=print(parametros)
 
 
         y=distribuicoes[distribuicao](x,*parametros)
+
         b=print(y.max())
         plots.histograma_fit(self,coluna,x,y)
     return s,d,b
