@@ -9,7 +9,7 @@ Em implementação por Lenon Flores Moraes, cursando Ciência de dados e intelig
   <summary> Prints do app</summary>
   <br>
   <img src="./images/table.png" width="400">
-  <img src="./imagens/Histograma.png" width="400">
+  <img src="./images/Histograma.png" width="400">
   <img src="./images/Boxplot.png" width="400">
   <img src="./images/Série temporal.png" width="400">
   <img src="./images/ACF e PACF.png" width="400">
