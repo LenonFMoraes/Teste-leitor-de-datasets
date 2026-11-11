@@ -31,17 +31,17 @@ if 'PA' in st.session_state:
     st.subheader('funções:')
     colunas=st.columns([1,1,1])
 
-    colunas[0]= int(st.text_input('Número de lags', width=100, placeholder=1))
+    colunas[0]= (st.text_input('Número de lags', width=100, placeholder=1))
     colunas[1]=st.button('Diferenciação')
     colunas[2]=st.button('Segunda diff')
     if colunas[1]:
 
-            st.session_state['y2']=fs.diff(yplot,colunas[0])
+            st.session_state['y2']=fs.diff(yplot,int(colunas[0]))
             col[1]=fs.plot_serie(PA, x, st.session_state['y2'])
             col[1]= fs.acf_plot(st.session_state['y2'],48)
             col[2]= fs.pacf_plot(st.session_state['y2'],48)
     if colunas[2]:
-        st.session_state['y3']=fs.diff(st.session_state['y2'],colunas[0])
+        st.session_state['y3']=fs.diff(st.session_state['y2'],int(colunas[0]))
         col[1]=fs.plot_serie(PA, x, st.session_state['y3'])
         col[1]= fs.acf_plot(st.session_state['y3'],48)
         col[2]= fs.pacf_plot(st.session_state['y3'],48)
