@@ -30,7 +30,7 @@ if 'PA' in st.session_state:
         cols[0].metric(label=f'Número de valores diferentes', value=PA.resumo_estatistico[coluna_selecionada]['contagem'])
 
         if len(PA.resumo_estatistico[coluna_selecionada]['unicos'])<=10:
-            st.write("Menor")
+           
             cols[1].text(f'Tabela com as frequências normalizadas da coluna {coluna_selecionada}')
             cols[1].table( data=PA.resumo_estatistico[coluna_selecionada]['frequencia'])
             cols[2].text(f'Valores únicos da coluna {coluna_selecionada}')
