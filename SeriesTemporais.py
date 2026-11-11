@@ -31,7 +31,7 @@ if 'PA' in st.session_state:
     st.subheader('funções:')
     colunas=st.columns([1,1,1])
 
-    colunas[0]= int(st.text_input('Número de lags', width=100))
+    colunas[0]= int(st.text_input('Número de lags', width=100, placeholder=1))
     colunas[1]=st.button('Diferenciação')
     colunas[2]=st.button('Segunda diff')
     if colunas[1]:
